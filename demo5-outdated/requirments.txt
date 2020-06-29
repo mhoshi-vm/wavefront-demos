@@ -1,0 +1,8 @@
+flask 
+flask-jsonpify 
+flask-sqlalchemy 
+flask-restful
+wavefront-sdk-python
+wavefront-opentracing-sdk-pythoN
+opentracing
+opentracing_instrumentation
