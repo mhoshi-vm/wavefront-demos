@@ -1,90 +1,46 @@
 from flask import Flask, request
 from flask import _request_ctx_stack as stack
 # Set up sender
-from wavefront_sdk import WavefrontDirectClient
-from wavefront_sdk.common import ApplicationTags
-import wavefront_opentracing_sdk
-import wavefront_opentracing_sdk.reporting
-from wavefront_opentracing_sdk.reporting import CompositeReporter
-from wavefront_opentracing_sdk.reporting import ConsoleReporter
-from wavefront_opentracing_sdk.reporting import WavefrontSpanReporter
-import wavefront_sdk
-from wavefront_opentracing_sdk import WavefrontTracer
+from jaeger_client import Tracer, ConstSampler
+from jaeger_client.reporter import NullReporter
+from jaeger_client.codecs import B3Codec
 from opentracing.ext import tags
 from opentracing.propagation import Format
-from opentracing_instrumentation.request_context import span_in_context
-
-application_tag = wavefront_sdk.common.ApplicationTags(
-    application='demo5',
-    service='hello-python')
-# Create Wavefront Span Reporter using Wavefront Direct Client.
-f = open("wavefront","r")
-token = f.read()
-f.close()
-direct_client = wavefront_sdk.WavefrontDirectClient(
-    server="https://wavefront.surf",
-    token=token,
-    max_queue_size=50000,
-    batch_size=10000,
-    flush_interval_seconds=5)
-direct_reporter = WavefrontSpanReporter(direct_client)
+from opentracing_instrumentation.request_context import get_current_span,span_in_context
+import logging
+import sys
+from pprint import pprint
 
 
-# Create Composite reporter.
-# Use ConsoleReporter to output span data to console.
-composite_reporter = CompositeReporter(
-    direct_reporter, ConsoleReporter())
+# A very basic OpenTracing tracer (with null reporter)
+tracer = Tracer(
+    one_span_per_rpc=True,
+    service_name='hello-world',
+    reporter=NullReporter(),
+    sampler=ConstSampler(decision=True),
+    extra_codecs={Format.HTTP_HEADERS: B3Codec()}
+)
 
-# Create Tracer with Composite Reporter.
-tracer = WavefrontTracer(reporter=composite_reporter,
-                         application_tags=application_tag)
 
 app = Flask(__name__)
 
-#def trace():
-#    '''
-#    Function decorator that creates opentracing span from incoming b3 headers
-#    '''
-#    def decorator(f):
-#        def wrapper(*args, **kwargs):
-#            request = stack.top.request
-#            try:
-#                # Create a new span context, reading in values (traceid,
-#                # spanid, etc) from the incoming x-b3-*** headers.
-#                span_ctx = tracer.extract(
-#                    Format.HTTP_HEADERS,
-#                    dict(request.headers)
-#                )
-#                # Note: this tag means that the span will *not* be
-#                # a child span. It will use the incoming traceid and
-#                # spanid. We do this to propagate the headers verbatim.
-#                rpc_tag = {tags.SPAN_KIND: tags.SPAN_KIND_RPC_SERVER}
-#                span = tracer.start_span(
-#                    operation_name='op', child_of=span_ctx, tags=rpc_tag
-#                )
-#            except Exception as e:
-#                # We failed to create a context, possibly due to no
-#                # incoming x-b3-*** headers. Start a fresh span.
-#                # Note: This is a fallback only, and will create fresh headers,
-#                # not propagate headers.
-#                span = tracer.start_span('op')
-#            with span_in_context(span):
-#                r = f(*args, **kwargs)
-#                return r
-#        wrapper.__name__ = f.__name__
-#        return wrapper
-#    return decorator
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+requests_log = logging.getLogger("requests.packages.urllib3")
+requests_log.setLevel(logging.DEBUG)
+requests_log.propagate = True
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.DEBUG)
 
 
 @app.route("/")
-#@trace()
 def hello():
     request = stack.top.request
     span_ctx = tracer.extract(Format.HTTP_HEADERS, dict(request.headers))
     rpc_tag = {tags.SPAN_KIND: tags.SPAN_KIND_RPC_SERVER} 
     print(span_ctx)
     print(request.headers)
-    with tracer.start_span('hello', child_of=span_ctx ):
+    with tracer.start_span('hello', child_of=span_ctx , tags=rpc_tag):
+        pprint(vars(get_current_span().context))
         return 'Hello World!'
     #return 'Hello World!'
 

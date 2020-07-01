@@ -6,3 +6,4 @@ wavefront-sdk-python
 wavefront-opentracing-sdk-pythoN
 opentracing
 opentracing_instrumentation
+jaeger_client

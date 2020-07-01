@@ -16,7 +16,7 @@ public class HelloRestRedController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloRestRedController.class);
 	
 
-	@GetMapping("/hello-red")
+	@GetMapping("/hello")
 	public ResponseEntity<String> hello (@RequestHeader Map<String, String> header) {
 		printAllHeaders(header);
 		

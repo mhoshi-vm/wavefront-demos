@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: helloworld
+  name: helloworld
+  namespace: demo7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: helloworld
+  template:
+    metadata:
+      labels:
+        run: helloworld
+    spec:
+      containers:
+      - image: mhoshivm/spring-helloworld
+        imagePullPolicy: Always
+        name: helloworld
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: hellored
+  name: hellored
+  namespace: demo7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hellored
+  template:
+    metadata:
+      labels:
+        run: hellored
+    spec:
+      containers:
+      - image: mhoshivm/spring-hellored
+        imagePullPolicy: Always
+        name: hellored
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: hub
+  name: hub
+  namespace: demo7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hub
+  template:
+    metadata:
+      labels:
+        run: hub
+    spec:
+      containers:
+      - image: mhoshivm/spring-hub
+        imagePullPolicy: Always
+        name: hub

@@ -1,0 +1,27 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: helloworld
+  namespace: demo7
+data:
+  wavefront.tracing.enabled: "false"
+  spring.sleuth.enabled: "false"
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hellored
+  namespace: demo7
+data:
+  wavefront.tracing.enabled: "false"
+  spring.sleuth.enabled: "false"
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: hub
+  namespace: demo7
+data:
+  wavefront.tracing.enabled: "false"
+  spring.sleuth.enabled: "false"
+  hub.urls: "http://service1/hello,http://service2/hello"
