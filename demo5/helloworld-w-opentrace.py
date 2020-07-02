@@ -10,7 +10,7 @@ from wavefront_opentracing_sdk.reporting import ConsoleReporter
 from wavefront_opentracing_sdk.reporting import WavefrontSpanReporter
 
 import wavefront_sdk
-
+import argparse
 import uuid
 
 app = Flask(__name__)
@@ -28,11 +28,12 @@ def hello():
     baggage = {}
     for key, val in dict(request.headers).items():
         print(key)
+        print(val)
         key = key.lower()
         if key == _TRACE_ID:
-            trace_id = val
+            trace_id = uuid.UUID(val.zfill(32))
         elif key == _SPAN_ID:
-            span_id = val
+            span_id = uuid.UUID(val.zfill(32))
         elif key == _SAMPLE:
             sampling = bool(val == 'True')
         elif key.startswith(_BAGGAGE_PREFIX):
@@ -60,6 +61,9 @@ def strip_prefix(prefix, key):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('token')
+    args = parser.parse_args()
     application_tag = wavefront_sdk.common.ApplicationTags(
         application='demo5',
         service='hello-python')
@@ -69,7 +73,7 @@ if __name__ == '__main__':
     f.close()
     direct_client = wavefront_sdk.WavefrontDirectClient(
         server="https://wavefront.surf",
-        token=token,
+        token=args.token,
         max_queue_size=50000,
         batch_size=10000,
         flush_interval_seconds=5)
