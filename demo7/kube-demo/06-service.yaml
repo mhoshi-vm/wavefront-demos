@@ -11,7 +11,7 @@ spec:
     protocol: TCP
     targetPort: 8081
   selector:
-    run: service1
+    run: helloworld
   type: ClusterIP
 ---
 apiVersion: v1
@@ -27,7 +27,7 @@ spec:
     protocol: TCP
     targetPort: 8082
   selector:
-    run: service2
+    run: hellored
   type: ClusterIP
 ---
 apiVersion: v1
@@ -43,5 +43,5 @@ spec:
     protocol: TCP
     targetPort: 8086
   selector:
-    run: service6
+    run: hub
   type: ClusterIP

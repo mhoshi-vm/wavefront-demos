@@ -15,6 +15,7 @@ spec:
       labels:
         run: helloworld
     spec:
+      serviceAccountName: spring-service-account
       containers:
       - image: mhoshivm/spring-helloworld
         imagePullPolicy: Always
@@ -37,6 +38,7 @@ spec:
       labels:
         run: hellored
     spec:
+      serviceAccountName: spring-service-account
       containers:
       - image: mhoshivm/spring-hellored
         imagePullPolicy: Always
@@ -59,6 +61,7 @@ spec:
       labels:
         run: hub
     spec:
+      serviceAccountName: spring-service-account
       containers:
       - image: mhoshivm/spring-hub
         imagePullPolicy: Always

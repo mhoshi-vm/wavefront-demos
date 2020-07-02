@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: spring-role
+  namespace: demo7
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["services", "pods", "configmaps", "endpoints"]
+  verbs: ["get", "watch", "list"]
