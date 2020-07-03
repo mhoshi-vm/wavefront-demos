@@ -25,7 +25,7 @@ spec:
         - name: WAVEFRONT_URL
           value: https://wavefront.surf
         - name: WAVEFRONT_TOKEN
-          value: d2702db1-483b-431f-83cc-c6ca0f5262d1
+          value: YOUR_TOKEN
         - name: WAVEFRONT_PROXY_ARGS
           value: --traceZipkinListenerPorts 9411
         ports:

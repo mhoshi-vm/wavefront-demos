@@ -24,4 +24,4 @@ metadata:
 data:
   wavefront.tracing.enabled: "false"
   spring.sleuth.enabled: "false"
-  hub.urls: "http://service1/hello,http://service2/hello"
+  hub.urls: "http://service1/hello,http://service2/hello,http://service5"

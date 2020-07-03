@@ -6,4 +6,4 @@ ADD ./ /opt/hello-world
 WORKDIR /opt/hello-world
 RUN pip3 install -r requirements.txt
 
-CMD [ "sleep", "infinity" ]
+CMD [ "python", "/opt/hello-world/helloworld.py"]

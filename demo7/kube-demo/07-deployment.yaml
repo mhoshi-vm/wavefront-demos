@@ -48,6 +48,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
+    run: hello-python
+  name: hello-python
+  namespace: demo7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hello-python
+  template:
+    metadata:
+      labels:
+        run: hello-python
+    spec:
+      serviceAccountName: spring-service-account
+      containers:
+      - image: mhoshivm/hello-python
+        imagePullPolicy: Always
+        name: hello-python
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
     run: hub
   name: hub
   namespace: demo7
@@ -66,3 +89,4 @@ spec:
       - image: mhoshivm/spring-hub
         imagePullPolicy: Always
         name: hub
+
