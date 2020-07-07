@@ -5,6 +5,8 @@ metadata:
   namespace: demo7
 data:
   wavefront.tracing.enabled: "false"
+  wavefront.freemium-account: "false"
+  management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
 ---
 kind: ConfigMap
@@ -14,6 +16,8 @@ metadata:
   namespace: demo7
 data:
   wavefront.tracing.enabled: "false"
+  wavefront.freemium-account: "false"
+  management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
 ---
 kind: ConfigMap
@@ -23,5 +27,7 @@ metadata:
   namespace: demo7
 data:
   wavefront.tracing.enabled: "false"
+  wavefront.freemium-account: "false"
+  management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
   hub.urls: "http://service1/hello,http://service2/hello,http://service5"
