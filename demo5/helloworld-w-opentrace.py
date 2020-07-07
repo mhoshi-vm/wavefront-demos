@@ -68,9 +68,6 @@ if __name__ == '__main__':
         application='demo5',
         service='hello-python')
     # Create Wavefront Span Reporter using Wavefront Direct Client.
-    f = open("wavefront","r")
-    token = f.read()
-    f.close()
     direct_client = wavefront_sdk.WavefrontDirectClient(
         server="https://wavefront.surf",
         token=args.token,

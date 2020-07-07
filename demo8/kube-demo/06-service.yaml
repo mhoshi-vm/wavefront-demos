@@ -4,7 +4,7 @@ metadata:
   labels:
     run: service1
   name: service1
-  namespace: demo7
+  namespace: demo8
 spec:
   ports:
   - port: 80
@@ -20,7 +20,7 @@ metadata:
   labels:
     run: service2
   name: service2
-  namespace: demo7
+  namespace: demo8
 spec:
   ports:
   - port: 80
@@ -36,7 +36,7 @@ metadata:
   labels:
     run: service5
   name: service5
-  namespace: demo7
+  namespace: demo8
 spec:
   ports:
   - port: 80
@@ -52,7 +52,7 @@ metadata:
   labels:
     run: service6
   name: service6
-  namespace: demo7
+  namespace: demo8
 spec:
   ports:
   - port: 80

@@ -56,3 +56,7 @@ INFO: Retrieved Tracer parameter wf.application=demo4
 |=============================================================='
 ' 1 deferrers were detected:
 ```
+
+# Findings
+• For java tracing w/o sleuth or wavefront, attaching with a java libarary will allow to connect/send metrics to wavefront
+

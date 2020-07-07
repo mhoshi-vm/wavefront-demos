@@ -2,11 +2,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: spring-rolebinding
-  namespace: demo7
+  namespace: demo8
 subjects:
 - kind: ServiceAccount
   name: spring-service-account
-  namespace: demo7
+  namespace: demo8
 roleRef:
   kind: Role
   name: spring-role

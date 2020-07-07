@@ -4,7 +4,7 @@ metadata:
   labels:
     run: helloworld
   name: helloworld
-  namespace: demo7
+  namespace: demo8
 spec:
   replicas: 1
   selector:
@@ -27,7 +27,7 @@ metadata:
   labels:
     run: hellored
   name: hellored
-  namespace: demo7
+  namespace: demo8
 spec:
   replicas: 1
   selector:
@@ -50,7 +50,7 @@ metadata:
   labels:
     run: hello-python
   name: hello-python
-  namespace: demo7
+  namespace: demo8
 spec:
   replicas: 1
   selector:
@@ -73,7 +73,7 @@ metadata:
   labels:
     run: hub
   name: hub
-  namespace: demo7
+  namespace: demo8
 spec:
   replicas: 1
   selector:
