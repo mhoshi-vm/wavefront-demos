@@ -20,6 +20,8 @@ spec:
       - image: mhoshivm/spring-helloworld
         imagePullPolicy: Always
         name: helloworld
+        ports:
+        - containerPort: 8081
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -43,6 +45,8 @@ spec:
       - image: mhoshivm/spring-hellored
         imagePullPolicy: Always
         name: hellored
+        ports:
+        - containerPort: 8082
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -66,6 +70,8 @@ spec:
       - image: mhoshivm/hello-python
         imagePullPolicy: Always
         name: hello-python
+        ports:
+        - containerPort: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -89,4 +95,6 @@ spec:
       - image: mhoshivm/spring-hub
         imagePullPolicy: Always
         name: hub
+        ports:
+        - containerPort: 8086
 

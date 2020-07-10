@@ -1,11 +1,11 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: helloworld
+  name: hellorest
   namespace: demo8
 data:
   wavefront.tracing.enabled: "false"
-  wavefront.freemium-account: "false"
+  wavefront.freemium.account: "false"
   management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
 ---

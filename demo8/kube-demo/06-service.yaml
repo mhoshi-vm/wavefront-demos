@@ -10,6 +10,7 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 8081
+    name: http-service1
   selector:
     run: helloworld
   type: ClusterIP
@@ -26,6 +27,7 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 8082
+    name: http-service2
   selector:
     run: hellored
   type: ClusterIP
@@ -42,6 +44,7 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 5000
+    name: http-service5
   selector:
     run: hello-python
   type: ClusterIP
@@ -58,6 +61,7 @@ spec:
   - port: 80
     protocol: TCP
     targetPort: 8086
+    name: http-service6
   selector:
     run: hub
   type: ClusterIP
