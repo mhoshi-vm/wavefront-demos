@@ -5,7 +5,6 @@ metadata:
   namespace: demo8
 data:
   wavefront.tracing.enabled: "false"
-  wavefront.freemium.account: "false"
   management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
 ---
@@ -16,7 +15,6 @@ metadata:
   namespace: demo8
 data:
   wavefront.tracing.enabled: "false"
-  wavefront.freemium-account: "false"
   management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
 ---
@@ -27,7 +25,6 @@ metadata:
   namespace: demo8
 data:
   wavefront.tracing.enabled: "false"
-  wavefront.freemium-account: "false"
   management.metrics.export.wavefront.enabled: "false"
   spring.sleuth.enabled: "false"
   hub.urls: "http://service1/hello,http://service2/hello,http://service5"

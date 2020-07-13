@@ -22,6 +22,9 @@ spec:
         name: helloworld
         ports:
         - containerPort: 8081
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,6 +50,9 @@ spec:
         name: hellored
         ports:
         - containerPort: 8082
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -72,6 +78,9 @@ spec:
         name: hello-python
         ports:
         - containerPort: 5000
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -97,4 +106,7 @@ spec:
         name: hub
         ports:
         - containerPort: 8086
+        env:
+        - name: WAVEFRONT_FREEMIUM-ACCOUNT
+          value: "false"
 
